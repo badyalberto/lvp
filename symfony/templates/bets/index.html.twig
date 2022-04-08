@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bets index{% endblock %}
+
+{% block body %}
+    <h1>Bets index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kills</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bet in bets %}
+            <tr>
+                <td>{{ bet.id }}</td>
+                <td>{{ bet.kills }}</td>
+                <td>
+                    <a href="{{ path('app_bets_show', {'id': bet.id}) }}">show</a>
+                    <a href="{{ path('app_bets_edit', {'id': bet.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bets_new') }}">Create new</a>
+{% endblock %}
